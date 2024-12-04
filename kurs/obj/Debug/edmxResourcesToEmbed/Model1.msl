@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Service5ModelContainer" CdmEntityContainer="Service5Entities">
+    <EntitySetMapping Name="Account">
+      <EntityTypeMapping TypeName="Service5Model.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="id_account" ColumnName="id_account" />
+          <ScalarProperty Name="logins" ColumnName="logins" />
+          <ScalarProperty Name="passwords" ColumnName="passwords" />
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="Service5Model.Clients">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Devices">
+      <EntityTypeMapping TypeName="Service5Model.Devices">
+        <MappingFragment StoreEntitySet="Devices">
+          <ScalarProperty Name="id_device" ColumnName="id_device" />
+          <ScalarProperty Name="device_name" ColumnName="device_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Price">
+      <EntityTypeMapping TypeName="Service5Model.Price">
+        <MappingFragment StoreEntitySet="Price">
+          <ScalarProperty Name="id_price" ColumnName="id_price" />
+          <ScalarProperty Name="name_price" ColumnName="name_price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Request">
+      <EntityTypeMapping TypeName="Service5Model.Request">
+        <MappingFragment StoreEntitySet="Request">
+          <ScalarProperty Name="id_request" ColumnName="id_request" />
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+          <ScalarProperty Name="id_worker" ColumnName="id_worker" />
+          <ScalarProperty Name="id_device" ColumnName="id_device" />
+          <ScalarProperty Name="id_time1" ColumnName="id_time1" />
+          <ScalarProperty Name="id_time2" ColumnName="id_time2" />
+          <ScalarProperty Name="id_type_of_repair" ColumnName="id_type_of_repair" />
+          <ScalarProperty Name="id_price" ColumnName="id_price" />
+          <ScalarProperty Name="id_warranty" ColumnName="id_warranty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role_">
+      <EntityTypeMapping TypeName="Service5Model.Role_">
+        <MappingFragment StoreEntitySet="Role_">
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+          <ScalarProperty Name="name_role" ColumnName="name_role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Times1">
+      <EntityTypeMapping TypeName="Service5Model.Times1">
+        <MappingFragment StoreEntitySet="Times1">
+          <ScalarProperty Name="id_time1" ColumnName="id_time1" />
+          <ScalarProperty Name="name_time1" ColumnName="name_time1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Times2">
+      <EntityTypeMapping TypeName="Service5Model.Times2">
+        <MappingFragment StoreEntitySet="Times2">
+          <ScalarProperty Name="id_time2" ColumnName="id_time2" />
+          <ScalarProperty Name="name_time2" ColumnName="name_time2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type_of_repair">
+      <EntityTypeMapping TypeName="Service5Model.Type_of_repair">
+        <MappingFragment StoreEntitySet="Type_of_repair">
+          <ScalarProperty Name="id_type_of_repair" ColumnName="id_type_of_repair" />
+          <ScalarProperty Name="name_type_of_repair" ColumnName="name_type_of_repair" />
+          <ScalarProperty Name="id_worker" ColumnName="id_worker" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Warranty">
+      <EntityTypeMapping TypeName="Service5Model.Warranty">
+        <MappingFragment StoreEntitySet="Warranty">
+          <ScalarProperty Name="id_warranty" ColumnName="id_warranty" />
+          <ScalarProperty Name="name_warranty" ColumnName="name_warranty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Workers">
+      <EntityTypeMapping TypeName="Service5Model.Workers">
+        <MappingFragment StoreEntitySet="Workers">
+          <ScalarProperty Name="id_worker" ColumnName="id_worker" />
+          <ScalarProperty Name="name_worker" ColumnName="name_worker" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

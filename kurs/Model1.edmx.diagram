@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="276cb44206dd428784893b9e0164d238" Name="Diagram1">
+        <EntityTypeShape EntityType="Service5Model.Account" Width="1.5" PointX="5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Service5Model.Clients" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Service5Model.Devices" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="Service5Model.Price" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Service5Model.Request" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Service5Model.Role_" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Service5Model.Times1" Width="1.5" PointX="3" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Service5Model.Times2" Width="1.5" PointX="3" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="Service5Model.Type_of_repair" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Service5Model.Warranty" Width="1.5" PointX="3" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Service5Model.Workers" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="Service5Model.FK__Account__id_role__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="Service5Model.FK__Request__id_clie__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="Service5Model.FK__Request__id_devi__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="Service5Model.FK__Request__id_pric__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="Service5Model.FK__Request__id_time__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="Service5Model.FK__Request__id_time__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="Service5Model.FK__Request__id_type__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="Service5Model.FK__Request__id_warr__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="Service5Model.FK__Request__id_work__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="Service5Model.FK__Type_of_r__id_wo__5812160E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

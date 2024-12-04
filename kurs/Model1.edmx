@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Service5Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id_account" />
+          </Key>
+          <Property Name="id_account" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="logins" Type="nvarchar" MaxLength="50" />
+          <Property Name="passwords" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_role" Type="int" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="id_client" />
+          </Key>
+          <Property Name="id_client" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_name" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="id_device" />
+          </Key>
+          <Property Name="id_device" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="device_name" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="id_price" />
+          </Key>
+          <Property Name="id_price" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_price" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="id_request" />
+          </Key>
+          <Property Name="id_request" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_client" Type="int" />
+          <Property Name="id_worker" Type="int" />
+          <Property Name="id_device" Type="int" />
+          <Property Name="id_time1" Type="int" />
+          <Property Name="id_time2" Type="int" />
+          <Property Name="id_type_of_repair" Type="int" />
+          <Property Name="id_price" Type="int" />
+          <Property Name="id_warranty" Type="int" />
+        </EntityType>
+        <EntityType Name="Role_">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_role" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Times1">
+          <Key>
+            <PropertyRef Name="id_time1" />
+          </Key>
+          <Property Name="id_time1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_time1" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Times2">
+          <Key>
+            <PropertyRef Name="id_time2" />
+          </Key>
+          <Property Name="id_time2" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_time2" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type_of_repair">
+          <Key>
+            <PropertyRef Name="id_type_of_repair" />
+          </Key>
+          <Property Name="id_type_of_repair" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_type_of_repair" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="id_worker" Type="int" />
+        </EntityType>
+        <EntityType Name="Warranty">
+          <Key>
+            <PropertyRef Name="id_warranty" />
+          </Key>
+          <Property Name="id_warranty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_warranty" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Workers">
+          <Key>
+            <PropertyRef Name="id_worker" />
+          </Key>
+          <Property Name="id_worker" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_worker" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Account__id_role__4BAC3F29">
+          <End Role="Role_" Type="Self.Role_" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role_">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_clie__5EBF139D">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="id_client" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_devi__60A75C0F">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="id_device" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_device" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_pric__6477ECF3">
+          <End Role="Price" Type="Self.Price" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="id_price" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_price" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_time__619B8048">
+          <End Role="Times1" Type="Self.Times1" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Times1">
+              <PropertyRef Name="id_time1" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_time1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_time__628FA481">
+          <End Role="Times2" Type="Self.Times2" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Times2">
+              <PropertyRef Name="id_time2" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_time2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_type__6383C8BA">
+          <End Role="Type_of_repair" Type="Self.Type_of_repair" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_of_repair">
+              <PropertyRef Name="id_type_of_repair" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_type_of_repair" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_warr__656C112C">
+          <End Role="Warranty" Type="Self.Warranty" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warranty">
+              <PropertyRef Name="id_warranty" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_warranty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_work__5FB337D6">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="id_worker" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_worker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Type_of_r__id_wo__5812160E">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
+          <End Role="Type_of_repair" Type="Self.Type_of_repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="id_worker" />
+            </Principal>
+            <Dependent Role="Type_of_repair">
+              <PropertyRef Name="id_worker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Service5ModelContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role_" EntityType="Self.Role_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Times1" EntityType="Self.Times1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Times2" EntityType="Self.Times2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_of_repair" EntityType="Self.Type_of_repair" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warranty" EntityType="Self.Warranty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Account__id_role__4BAC3F29" Association="Self.FK__Account__id_role__4BAC3F29">
+            <End Role="Role_" EntitySet="Role_" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_clie__5EBF139D" Association="Self.FK__Request__id_clie__5EBF139D">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_devi__60A75C0F" Association="Self.FK__Request__id_devi__60A75C0F">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_pric__6477ECF3" Association="Self.FK__Request__id_pric__6477ECF3">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_time__619B8048" Association="Self.FK__Request__id_time__619B8048">
+            <End Role="Times1" EntitySet="Times1" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_time__628FA481" Association="Self.FK__Request__id_time__628FA481">
+            <End Role="Times2" EntitySet="Times2" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_type__6383C8BA" Association="Self.FK__Request__id_type__6383C8BA">
+            <End Role="Type_of_repair" EntitySet="Type_of_repair" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_warr__656C112C" Association="Self.FK__Request__id_warr__656C112C">
+            <End Role="Warranty" EntitySet="Warranty" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_work__5FB337D6" Association="Self.FK__Request__id_work__5FB337D6">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Type_of_r__id_wo__5812160E" Association="Self.FK__Type_of_r__id_wo__5812160E">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="Type_of_repair" EntitySet="Type_of_repair" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Service5Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id_account" />
+          </Key>
+          <Property Name="id_account" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="logins" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="passwords" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_role" Type="Int32" />
+          <NavigationProperty Name="Role_" Relationship="Self.FK__Account__id_role__4BAC3F29" FromRole="Account" ToRole="Role_" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="id_client" />
+          </Key>
+          <Property Name="id_client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_name" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__id_clie__5EBF139D" FromRole="Clients" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="id_device" />
+          </Key>
+          <Property Name="id_device" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="device_name" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__id_devi__60A75C0F" FromRole="Devices" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="id_price" />
+          </Key>
+          <Property Name="id_price" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_price" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__id_pric__6477ECF3" FromRole="Price" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="id_request" />
+          </Key>
+          <Property Name="id_request" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_client" Type="Int32" />
+          <Property Name="id_worker" Type="Int32" />
+          <Property Name="id_device" Type="Int32" />
+          <Property Name="id_time1" Type="Int32" />
+          <Property Name="id_time2" Type="Int32" />
+          <Property Name="id_type_of_repair" Type="Int32" />
+          <Property Name="id_price" Type="Int32" />
+          <Property Name="id_warranty" Type="Int32" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Request__id_clie__5EBF139D" FromRole="Request" ToRole="Clients" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK__Request__id_devi__60A75C0F" FromRole="Request" ToRole="Devices" />
+          <NavigationProperty Name="Price" Relationship="Self.FK__Request__id_pric__6477ECF3" FromRole="Request" ToRole="Price" />
+          <NavigationProperty Name="Times1" Relationship="Self.FK__Request__id_time__619B8048" FromRole="Request" ToRole="Times1" />
+          <NavigationProperty Name="Times2" Relationship="Self.FK__Request__id_time__628FA481" FromRole="Request" ToRole="Times2" />
+          <NavigationProperty Name="Type_of_repair" Relationship="Self.FK__Request__id_type__6383C8BA" FromRole="Request" ToRole="Type_of_repair" />
+          <NavigationProperty Name="Warranty" Relationship="Self.FK__Request__id_warr__656C112C" FromRole="Request" ToRole="Warranty" />
+          <NavigationProperty Name="Workers" Relationship="Self.FK__Request__id_work__5FB337D6" FromRole="Request" ToRole="Workers" />
+        </EntityType>
+        <EntityType Name="Role_">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Account__id_role__4BAC3F29" FromRole="Role_" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Times1">
+          <Key>
+            <PropertyRef Name="id_time1" />
+          </Key>
+          <Property Name="id_time1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_time1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__id_time__619B8048" FromRole="Times1" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Times2">
+          <Key>
+            <PropertyRef Name="id_time2" />
+          </Key>
+          <Property Name="id_time2" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_time2" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__id_time__628FA481" FromRole="Times2" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Type_of_repair">
+          <Key>
+            <PropertyRef Name="id_type_of_repair" />
+          </Key>
+          <Property Name="id_type_of_repair" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_type_of_repair" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_worker" Type="Int32" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__id_type__6383C8BA" FromRole="Type_of_repair" ToRole="Request" />
+          <NavigationProperty Name="Workers" Relationship="Self.FK__Type_of_r__id_wo__5812160E" FromRole="Type_of_repair" ToRole="Workers" />
+        </EntityType>
+        <EntityType Name="Warranty">
+          <Key>
+            <PropertyRef Name="id_warranty" />
+          </Key>
+          <Property Name="id_warranty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_warranty" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__id_warr__656C112C" FromRole="Warranty" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Workers">
+          <Key>
+            <PropertyRef Name="id_worker" />
+          </Key>
+          <Property Name="id_worker" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_worker" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__id_work__5FB337D6" FromRole="Workers" ToRole="Request" />
+          <NavigationProperty Name="Type_of_repair" Relationship="Self.FK__Type_of_r__id_wo__5812160E" FromRole="Workers" ToRole="Type_of_repair" />
+        </EntityType>
+        <Association Name="FK__Account__id_role__4BAC3F29">
+          <End Role="Role_" Type="Self.Role_" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role_">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_clie__5EBF139D">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="id_client" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_devi__60A75C0F">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="id_device" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_device" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_pric__6477ECF3">
+          <End Role="Price" Type="Self.Price" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="id_price" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_price" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_time__619B8048">
+          <End Role="Times1" Type="Self.Times1" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Times1">
+              <PropertyRef Name="id_time1" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_time1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_time__628FA481">
+          <End Role="Times2" Type="Self.Times2" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Times2">
+              <PropertyRef Name="id_time2" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_time2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_type__6383C8BA">
+          <End Role="Type_of_repair" Type="Self.Type_of_repair" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_of_repair">
+              <PropertyRef Name="id_type_of_repair" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_type_of_repair" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_warr__656C112C">
+          <End Role="Warranty" Type="Self.Warranty" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warranty">
+              <PropertyRef Name="id_warranty" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_warranty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__id_work__5FB337D6">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="id_worker" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="id_worker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Type_of_r__id_wo__5812160E">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
+          <End Role="Type_of_repair" Type="Self.Type_of_repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="id_worker" />
+            </Principal>
+            <Dependent Role="Type_of_repair">
+              <PropertyRef Name="id_worker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Service5Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" />
+          <EntitySet Name="Price" EntityType="Self.Price" />
+          <EntitySet Name="Request" EntityType="Self.Request" />
+          <EntitySet Name="Role_" EntityType="Self.Role_" />
+          <EntitySet Name="Times1" EntityType="Self.Times1" />
+          <EntitySet Name="Times2" EntityType="Self.Times2" />
+          <EntitySet Name="Type_of_repair" EntityType="Self.Type_of_repair" />
+          <EntitySet Name="Warranty" EntityType="Self.Warranty" />
+          <EntitySet Name="Workers" EntityType="Self.Workers" />
+          <AssociationSet Name="FK__Account__id_role__4BAC3F29" Association="Self.FK__Account__id_role__4BAC3F29">
+            <End Role="Role_" EntitySet="Role_" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_clie__5EBF139D" Association="Self.FK__Request__id_clie__5EBF139D">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_devi__60A75C0F" Association="Self.FK__Request__id_devi__60A75C0F">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_pric__6477ECF3" Association="Self.FK__Request__id_pric__6477ECF3">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_time__619B8048" Association="Self.FK__Request__id_time__619B8048">
+            <End Role="Times1" EntitySet="Times1" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_time__628FA481" Association="Self.FK__Request__id_time__628FA481">
+            <End Role="Times2" EntitySet="Times2" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_type__6383C8BA" Association="Self.FK__Request__id_type__6383C8BA">
+            <End Role="Type_of_repair" EntitySet="Type_of_repair" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_warr__656C112C" Association="Self.FK__Request__id_warr__656C112C">
+            <End Role="Warranty" EntitySet="Warranty" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__id_work__5FB337D6" Association="Self.FK__Request__id_work__5FB337D6">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Type_of_r__id_wo__5812160E" Association="Self.FK__Type_of_r__id_wo__5812160E">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="Type_of_repair" EntitySet="Type_of_repair" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Service5ModelContainer" CdmEntityContainer="Service5Entities">
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="Service5Model.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="id_account" ColumnName="id_account" />
+                <ScalarProperty Name="logins" ColumnName="logins" />
+                <ScalarProperty Name="passwords" ColumnName="passwords" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="Service5Model.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="client_name" ColumnName="client_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="Service5Model.Devices">
+              <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="id_device" ColumnName="id_device" />
+                <ScalarProperty Name="device_name" ColumnName="device_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Price">
+            <EntityTypeMapping TypeName="Service5Model.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="id_price" ColumnName="id_price" />
+                <ScalarProperty Name="name_price" ColumnName="name_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Request">
+            <EntityTypeMapping TypeName="Service5Model.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="id_request" ColumnName="id_request" />
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="id_worker" ColumnName="id_worker" />
+                <ScalarProperty Name="id_device" ColumnName="id_device" />
+                <ScalarProperty Name="id_time1" ColumnName="id_time1" />
+                <ScalarProperty Name="id_time2" ColumnName="id_time2" />
+                <ScalarProperty Name="id_type_of_repair" ColumnName="id_type_of_repair" />
+                <ScalarProperty Name="id_price" ColumnName="id_price" />
+                <ScalarProperty Name="id_warranty" ColumnName="id_warranty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role_">
+            <EntityTypeMapping TypeName="Service5Model.Role_">
+              <MappingFragment StoreEntitySet="Role_">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="name_role" ColumnName="name_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Times1">
+            <EntityTypeMapping TypeName="Service5Model.Times1">
+              <MappingFragment StoreEntitySet="Times1">
+                <ScalarProperty Name="id_time1" ColumnName="id_time1" />
+                <ScalarProperty Name="name_time1" ColumnName="name_time1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Times2">
+            <EntityTypeMapping TypeName="Service5Model.Times2">
+              <MappingFragment StoreEntitySet="Times2">
+                <ScalarProperty Name="id_time2" ColumnName="id_time2" />
+                <ScalarProperty Name="name_time2" ColumnName="name_time2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_of_repair">
+            <EntityTypeMapping TypeName="Service5Model.Type_of_repair">
+              <MappingFragment StoreEntitySet="Type_of_repair">
+                <ScalarProperty Name="id_type_of_repair" ColumnName="id_type_of_repair" />
+                <ScalarProperty Name="name_type_of_repair" ColumnName="name_type_of_repair" />
+                <ScalarProperty Name="id_worker" ColumnName="id_worker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warranty">
+            <EntityTypeMapping TypeName="Service5Model.Warranty">
+              <MappingFragment StoreEntitySet="Warranty">
+                <ScalarProperty Name="id_warranty" ColumnName="id_warranty" />
+                <ScalarProperty Name="name_warranty" ColumnName="name_warranty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workers">
+            <EntityTypeMapping TypeName="Service5Model.Workers">
+              <MappingFragment StoreEntitySet="Workers">
+                <ScalarProperty Name="id_worker" ColumnName="id_worker" />
+                <ScalarProperty Name="name_worker" ColumnName="name_worker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
